@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter, Space_Grotesk } from "next/font/google"
 import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "sonner"
 
 // Initialize the Inter font
 const inter = Inter({
@@ -19,8 +20,8 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: "ByteCraft - HackFest 2025",
-  description: "Join ByteCraft's HackFest 2025. Express your interest now!",
+  title: "HackFest 2025",
+  description: "Join HackFest 2025. Express your interest now!",
   generator: 'v0.dev'
 }
 
@@ -38,7 +39,7 @@ export default function RootLayout({
           type="text/css"
         />
       </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`} suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -46,6 +47,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Toaster richColors closeButton theme="dark" />
         </ThemeProvider>
       </body>
     </html>

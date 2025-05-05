@@ -6,9 +6,11 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
+import { toast } from "sonner"
 
 export default function ContactPage() {
   const [isMounted, setIsMounted] = useState(false)
+  const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   useEffect(() => {
     setIsMounted(true)
@@ -16,14 +18,16 @@ export default function ContactPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-black overflow-hidden">
-      {/* Background gradient orbs */}
+      {/* Background gradient orbs - optimize for mobile */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-purple-900/20 blur-[100px] opacity-50" />
         <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] rounded-full bg-cyan-900/20 blur-[120px] opacity-50" />
       </div>
 
-      {/* Particle effect */}
-      <div className="fixed inset-0 bg-grid-white/[0.02] pointer-events-none" />
+      {/* Optimize particle effect for mobile */}
+      <div className="fixed inset-0 bg-grid-white/[0.02] pointer-events-none" style={{ 
+        backgroundSize: typeof window !== "undefined" && window.innerWidth < 768 ? '32px 32px' : '64px 64px' 
+      }} />
 
       <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-black/80 backdrop-blur-lg supports-[backdrop-filter]:bg-black/20">
         <motion.div
@@ -46,11 +50,11 @@ export default function ContactPage() {
                 }}
               />
               <div className="absolute inset-0.5 bg-black rounded-sm flex items-center justify-center">
-                <span className="text-xs text-white font-mono">BC</span>
+                <span className="text-xs text-white font-mono">HF</span>
               </div>
             </div>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 font-display">
-              ByteCraft
+              HackFest
             </span>
           </div>
           <div className="flex flex-1 items-center justify-end space-x-4">
@@ -102,7 +106,7 @@ export default function ContactPage() {
               >
                 <h1 className="text-3xl font-bold tracking-tighter md:text-4xl/tight text-white font-display">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
-                    Contact ByteCraft
+                    Contact Us
                   </span>
                 </h1>
                 <p className="max-w-[600px] text-gray-300 md:text-xl/relaxed mx-auto">
@@ -116,12 +120,12 @@ export default function ContactPage() {
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  whileHover={{ y: -10, scale: 1.02 }}
+                  whileHover={!prefersReducedMotion ? { y: -10, scale: 1.02 } : {}}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-green-300/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="flex h-20 w-20 items-center justify-center rounded-full bg-green-900/20 mb-4 group-hover:scale-110 transition-transform duration-300">
                     <Image
-                      src="/placeholder.svg?height=50&width=50"
+                      src="/whatsapp.svg"
                       alt="WhatsApp"
                       width={50}
                       height={50}
@@ -130,9 +134,13 @@ export default function ContactPage() {
                   </div>
                   <h3 className="text-2xl font-bold text-white">WhatsApp</h3>
                   <p className="text-gray-400 text-lg">Connect with us on WhatsApp for quick responses</p>
-                  <p className="text-green-400 font-mono text-xl mt-4">[Your WhatsApp Number]</p>
-                  <Button className="mt-6 bg-green-600 hover:bg-green-700 text-white group-hover:scale-105 transition-transform duration-300">
-                    Open WhatsApp
+                  <Button 
+                    className="mt-6 bg-green-600 hover:bg-green-700 text-white group-hover:scale-105 transition-transform duration-300"
+                    asChild
+                  >
+                    <a href="https://wa.me/353830597518" target="_blank" rel="noopener noreferrer">
+                      Open WhatsApp
+                    </a>
                   </Button>
                 </motion.div>
 
@@ -141,7 +149,7 @@ export default function ContactPage() {
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  whileHover={{ y: -10, scale: 1.02 }}
+                  whileHover={!prefersReducedMotion ? { y: -10, scale: 1.02 } : {}}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-300/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="flex h-20 w-20 items-center justify-center rounded-full bg-blue-900/20 mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -149,9 +157,23 @@ export default function ContactPage() {
                   </div>
                   <h3 className="text-2xl font-bold text-white">Email</h3>
                   <p className="text-gray-400 text-lg">Send us an email with your questions or feedback</p>
-                  <p className="text-cyan-400 font-mono text-xl mt-4">[Your Email Address]</p>
-                  <Button className="mt-6 bg-cyan-600 hover:bg-cyan-700 text-white group-hover:scale-105 transition-transform duration-300">
-                    Send Email
+                  <p className="text-cyan-400 font-mono text-xl mt-4">ali.syed@fosis.org.uk</p>
+                  <Button 
+                    className="mt-6 bg-cyan-600 hover:bg-cyan-700 text-white group-hover:scale-105 transition-transform duration-300"
+                    onClick={() => {
+                      navigator.clipboard.writeText('ali.syed@fosis.org.uk');
+                      toast.success('Email copied to clipboard', {
+                        duration: 2000,
+                        position: 'bottom-center',
+                        style: {
+                          background: '#1a1a1a',
+                          color: '#fff',
+                          border: '1px solid #333',
+                        },
+                      });
+                    }}
+                  >
+                    Copy Email
                   </Button>
                 </motion.div>
               </div>
@@ -173,7 +195,7 @@ export default function ContactPage() {
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
-          <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} ByteCraft. All rights reserved.</p>
+          <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} HackFest. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <Link href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
               <Github className="h-5 w-5" />

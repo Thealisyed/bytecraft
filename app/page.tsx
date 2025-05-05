@@ -36,34 +36,42 @@ export default function HackathonLanding() {
   // Calculate parallax effect based on mouse position
   const calcParallax = (depth = 10) => {
     if (!isMounted) return { x: 0, y: 0 }
-
-    const x = (mousePosition.x - (typeof window !== "undefined" ? window.innerWidth / 2 : 0)) / depth
-    const y = (mousePosition.y - (typeof window !== "undefined" ? window.innerHeight / 2 : 0)) / depth
+    // Reduce parallax effect on mobile
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768
+    const mobileDepth = depth * 2 // Reduce effect on mobile
+    
+    const x = (mousePosition.x - (typeof window !== "undefined" ? window.innerWidth / 2 : 0)) / (isMobile ? mobileDepth : depth)
+    const y = (mousePosition.y - (typeof window !== "undefined" ? window.innerHeight / 2 : 0)) / (isMobile ? mobileDepth : depth)
     return { x, y }
   }
 
+  // Add reduced motion check
+  const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
   return (
     <div className="flex min-h-screen flex-col bg-black overflow-hidden">
-      {/* Background gradient orbs */}
+      {/* Background gradient orbs - optimize for mobile */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div
           className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-purple-900/20 blur-[100px]"
           style={{
-            transform: `translate(${calcParallax(30).x}px, ${calcParallax(30).y}px)`,
+            transform: !prefersReducedMotion ? `translate(${calcParallax(30).x}px, ${calcParallax(30).y}px)` : 'none',
             opacity: isMounted ? 0.5 - scrollY * 0.0005 : 0.5,
           }}
         />
         <div
           className="absolute bottom-0 right-1/4 w-[600px] h-[600px] rounded-full bg-cyan-900/20 blur-[120px]"
           style={{
-            transform: `translate(${calcParallax(40).x}px, ${calcParallax(40).y}px)`,
+            transform: !prefersReducedMotion ? `translate(${calcParallax(40).x}px, ${calcParallax(40).y}px)` : 'none',
             opacity: isMounted ? 0.5 - scrollY * 0.0005 : 0.5,
           }}
         />
       </div>
 
-      {/* Particle effect */}
-      <div className="fixed inset-0 bg-grid-white/[0.02] pointer-events-none" />
+      {/* Optimize particle effect for mobile */}
+      <div className="fixed inset-0 bg-grid-white/[0.02] pointer-events-none" style={{ 
+        backgroundSize: typeof window !== "undefined" && window.innerWidth < 768 ? '32px 32px' : '64px 64px' 
+      }} />
 
       <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-black/80 backdrop-blur-lg supports-[backdrop-filter]:bg-black/20">
         <motion.div
@@ -86,11 +94,11 @@ export default function HackathonLanding() {
                 }}
               />
               <div className="absolute inset-0.5 bg-black rounded-sm flex items-center justify-center">
-                <span className="text-xs text-white font-mono">BC</span>
+                <span className="text-xs text-white font-mono">HF</span>
               </div>
             </div>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 font-display">
-              ByteCraft
+              HackFest
             </span>
           </div>
           <div className="flex flex-1 items-center justify-end space-x-4">
@@ -142,7 +150,7 @@ export default function HackathonLanding() {
                   transition={{ duration: 0.5, delay: 0.3 }}
                   className="inline-block rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 px-4 py-1.5 text-sm font-medium text-white border border-white/10 mb-2"
                 >
-                  Coming 2025
+                  Coming June 2025
                 </motion.div>
 
                 <motion.h1
@@ -162,8 +170,8 @@ export default function HackathonLanding() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.5 }}
                 >
-                  Where innovation meets collaboration. <br />
-                  <span className="hidden sm:inline"> Join the brightest minds in tech to build the future!</span>
+                  Where innovation meets opportunity. <br />
+                  <span className="hidden sm:inline">Transform your ideas into a successful startup with professional mentorship!</span>
                 </motion.p>
 
                 {/* Register button moved up here */}
@@ -190,10 +198,27 @@ export default function HackathonLanding() {
                   transition={{ duration: 0.8, delay: 0.7 }}
                 >
                   <p className="text-gray-300 text-sm">
-                    <span className="text-purple-400 font-medium">Open to all university students and graduates.</span>{" "}
-                    No specific experience required - just bring your curiosity, innovative spirit and enthusiasm to
-                    have fun!
+                    <span className="text-purple-400 font-medium">Limited spots available!</span>{" "}
+                    This exclusive hackathon is open to university students and graduates. Winners will receive professional mentorship to transform their ideas into successful startups. Register early to secure your spot!
                   </p>
+                </motion.div>
+
+                <motion.div
+                  className="mt-4 px-6 py-4 rounded-lg bg-gradient-to-r from-purple-600/20 to-cyan-600/20 border border-purple-500/20 max-w-[800px] mx-auto relative overflow-hidden"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.75 }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 animate-pulse"></div>
+                  <div className="relative">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-cyan-400 font-bold text-lg">🏆 High-Value Prize</span>
+                      <span className="px-2 py-0.5 text-xs font-medium bg-cyan-500/20 text-cyan-300 rounded-full">Exclusive Opportunity</span>
+                    </div>
+                    <p className="text-gray-200 text-sm leading-relaxed">
+                      Selected winners will receive professional mentorship to help bring their innovative ideas to life as successful startups. This is your chance to turn your vision into reality!
+                    </p>
+                  </div>
                 </motion.div>
 
                 <motion.div
@@ -202,7 +227,7 @@ export default function HackathonLanding() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
                   style={{
-                    transform: isMounted
+                    transform: isMounted && !prefersReducedMotion
                       ? `perspective(1000px) rotateX(${scrollY * 0.01}deg) rotateY(${calcParallax(100).x * 0.05}deg)`
                       : "perspective(1000px) rotateX(0deg) rotateY(0deg)",
                   }}
@@ -217,7 +242,7 @@ export default function HackathonLanding() {
                     <div className="code-animation font-mono text-sm text-green-400 mb-2 text-left w-full">
                       <div className="flex">
                         <span className="text-purple-400 mr-2">$</span>
-                        <span className="text-green-400">bytecraft init hackfest-2025</span>
+                        <span className="text-green-400">init hackfest-2025</span>
                       </div>
                       <div className="mt-1">
                         <span className="text-cyan-400">Initializing</span>{" "}
@@ -311,7 +336,7 @@ export default function HackathonLanding() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true, margin: "-100px" }}
-                whileHover={{ y: -8, scale: 1.02 }}
+                whileHover={!prefersReducedMotion ? { y: -8, scale: 1.02 } : {}}
               >
                 <div className="feature-icon">
                   <Code className="h-6 w-6 text-purple-400" />
@@ -330,7 +355,7 @@ export default function HackathonLanding() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 viewport={{ once: true, margin: "-100px" }}
-                whileHover={{ y: -8, scale: 1.02 }}
+                whileHover={!prefersReducedMotion ? { y: -8, scale: 1.02 } : {}}
               >
                 <div className="feature-icon">
                   <Cpu className="h-6 w-6 text-cyan-400" />
@@ -347,7 +372,7 @@ export default function HackathonLanding() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
                 viewport={{ once: true, margin: "-100px" }}
-                whileHover={{ y: -8, scale: 1.02 }}
+                whileHover={!prefersReducedMotion ? { y: -8, scale: 1.02 } : {}}
               >
                 <div className="feature-icon">
                   <Rocket className="h-6 w-6 text-pink-400" />
@@ -463,7 +488,7 @@ export default function HackathonLanding() {
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
-          <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} ByteCraft. All rights reserved.</p>
+          <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} HackFest. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <Link href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
               <Github className="h-5 w-5" />

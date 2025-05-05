@@ -119,9 +119,11 @@ export function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
             target="_blank"
           >
             <div id="mc_embed_signup_scroll">
-              <h2 className="mb-4 text-2xl font-bold text-gray-900">Summer Hackathon Interest Form</h2>
+              <h2 className="mb-4 text-2xl font-bold text-gray-900">HackFest 2025 Registration</h2>
               <div className="mb-4 text-sm text-gray-500">
-                <span className="text-red-500">*</span> indicates required
+                <p className="mb-2">Limited spots available! Register early to secure your place in this exclusive hackathon.</p>
+                <p className="mb-2"><span className="font-medium text-purple-600">High-Value Prize:</span> Selected winners will receive professional mentorship to transform their ideas into successful startups.</p>
+                <p className="text-red-500">* indicates required</p>
               </div>
               
               <div className="space-y-4">
