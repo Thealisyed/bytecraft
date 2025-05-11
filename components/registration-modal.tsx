@@ -16,6 +16,7 @@ export function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
     EMAIL: "",
     MMERGE7: "",
     MMERGE8: "",
+    MMERGE5: "",
   })
 
   useEffect(() => {
@@ -57,12 +58,12 @@ export function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
             window.ftypes = new Array();
             fnames[1]='FNAME';ftypes[1]='text';
             fnames[2]='LNAME';ftypes[2]='text';
-            fnames[0]='EMAIL';ftypes[0]='email';
             fnames[7]='MMERGE7';ftypes[7]='dropdown';
+            fnames[0]='EMAIL';ftypes[0]='email';
             fnames[8]='MMERGE8';ftypes[8]='dropdown';
+            fnames[5]='MMERGE5';ftypes[5]='number';
             fnames[3]='ADDRESS';ftypes[3]='address';
             fnames[4]='PHONE';ftypes[4]='phone';
-            fnames[5]='BIRTHDAY';ftypes[5]='birthday';
             fnames[6]='COMPANY';ftypes[6]='text';
           }(jQuery));
           var $mcj = jQuery.noConflict(true);
@@ -119,9 +120,8 @@ export function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
             target="_blank"
           >
             <div id="mc_embed_signup_scroll">
-              <h2 className="mb-4 text-2xl font-bold text-gray-900">HackFest 2025 Registration</h2>
+              <h2 className="mb-4 text-2xl font-bold text-gray-900">Summer Hackathon Interest Form</h2>
               <div className="mb-4 text-sm text-gray-500">
-                <p className="mb-2"><span className="font-medium text-purple-600">Limited spots available!</span> Register early to secure your place in this exclusive hackathon. Open to university students and working professionals.</p>
                 <p className="text-red-500">* indicates required</p>
               </div>
               
@@ -157,21 +157,6 @@ export function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
                 </div>
 
                 <div className="mc-field-group">
-                  <label htmlFor="mce-EMAIL" className="block text-sm font-medium text-gray-700">
-                    Email Address <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    name="EMAIL"
-                    className="required email mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500 text-gray-900"
-                    id="mce-EMAIL"
-                    required
-                    value={formData.EMAIL}
-                    onChange={handleInputChange}
-                  />
-                </div>
-
-                <div className="mc-field-group">
                   <label htmlFor="mce-MMERGE7" className="block text-sm font-medium text-gray-700">
                     Gender <span className="text-red-500">*</span>
                   </label>
@@ -191,6 +176,21 @@ export function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
                 </div>
 
                 <div className="mc-field-group">
+                  <label htmlFor="mce-EMAIL" className="block text-sm font-medium text-gray-700">
+                    Email Address <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="EMAIL"
+                    className="required email mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500 text-gray-900"
+                    id="mce-EMAIL"
+                    required
+                    value={formData.EMAIL}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                <div className="mc-field-group">
                   <label htmlFor="mce-MMERGE8" className="block text-sm font-medium text-gray-700">
                     Which best describes you? <span className="text-red-500">*</span>
                   </label>
@@ -204,9 +204,24 @@ export function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
                   >
                     <option value=""></option>
                     <option value="University student">University student</option>
-                    <option value="Recent graduate">Recent graduate</option>
                     <option value="Working professional">Working professional</option>
                   </select>
+                </div>
+
+                <div className="mc-field-group">
+                  <label htmlFor="mce-MMERGE5" className="block text-sm font-medium text-gray-700">
+                    Age <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    name="MMERGE5"
+                    className="required number mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500 text-gray-900"
+                    id="mce-MMERGE5"
+                    required
+                    value={formData.MMERGE5}
+                    onChange={handleInputChange}
+                  />
+                  <span className="text-sm text-gray-500">Must be 18+</span>
                 </div>
               </div>
 
