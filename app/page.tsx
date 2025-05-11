@@ -82,16 +82,8 @@ export default function HackathonLanding() {
         >
           <div className="flex gap-2 items-center text-xl font-bold text-white">
             <div className="relative w-6 h-6 flex items-center justify-center">
-              <motion.div
+              <div
                 className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-sm"
-                animate={{
-                  rotate: [0, 90, 180, 270, 360],
-                }}
-                transition={{
-                  duration: 10,
-                  ease: "linear",
-                  repeat: Number.POSITIVE_INFINITY,
-                }}
               />
               <div className="absolute inset-0.5 bg-black rounded-sm flex items-center justify-center">
                 <span className="text-xs text-white font-mono">HF</span>
@@ -130,16 +122,16 @@ export default function HackathonLanding() {
       </header>
 
       <main className="flex-1 perspective">
-        <section className="w-full py-6 md:py-8 lg:py-10 relative overflow-hidden">
+        <section className="w-full py-6 md:py-12 lg:py-16 relative overflow-hidden">
           <motion.div
-            className="container px-4 md:px-6 relative z-10"
+            className="container px-4 md:px-6 lg:px-8 relative z-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
             <div className="flex flex-col items-center justify-center text-center">
               <motion.div
-                className="space-y-3 max-w-4xl"
+                className="space-y-3 max-w-4xl mx-auto"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -148,13 +140,13 @@ export default function HackathonLanding() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="inline-block rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 px-4 py-1.5 text-sm font-medium text-white border border-white/10 mb-2"
+                  className="inline-block rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 px-3 py-1 md:px-4 md:py-1.5 text-sm font-medium text-white border border-white/10 mb-2"
                 >
                   Coming June 2025
                 </motion.div>
 
                 <motion.h1
-                  className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl font-display"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter font-display"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
@@ -165,12 +157,12 @@ export default function HackathonLanding() {
                 </motion.h1>
 
                 <motion.p
-                  className="text-xl md:text-2xl text-gray-300 max-w-[800px] mx-auto leading-relaxed"
+                  className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-[800px] mx-auto leading-relaxed px-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.5 }}
                 >
-                  Where innovation meets opportunity. <br />
+                  Where innovation meets opportunity. <br className="hidden sm:block" />
                   <span className="hidden sm:inline">Transform your ideas into a successful startup with professional mentorship!</span>
                 </motion.p>
 
@@ -192,32 +184,32 @@ export default function HackathonLanding() {
                 </motion.div>
 
                 <motion.div
-                  className="mt-4 px-4 py-2 rounded-lg bg-white/5 border border-white/10 max-w-[800px] mx-auto"
+                  className="mt-4 px-6 py-4 rounded-lg bg-gradient-to-r from-purple-600/20 to-cyan-600/20 border border-purple-500/20 max-w-[800px] mx-auto relative overflow-hidden"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.7 }}
                 >
-                  <p className="text-gray-300 text-sm">
-                    <span className="text-purple-400 font-medium">Limited spots available!</span>{" "}
-                    This exclusive hackathon is open to university students and graduates. Winners will receive professional mentorship to transform their ideas into successful startups. Register early to secure your spot!
-                  </p>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 animate-pulse"></div>
+                  <div className="relative">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-red-400 font-bold text-lg">⚠️ Limited Spots Available!</span>
+                      <span className="px-2 py-0.5 text-xs font-medium bg-red-500/20 text-red-300 rounded-full">Register Now</span>
+                    </div>
+                    <p className="text-gray-200 text-sm leading-relaxed">
+                      This exclusive hackathon is open to university students and working professionals. With exciting prizes to be won, it's a perfect opportunity for learning, networking, and showcasing your skills. Register your interest early to secure your spot!
+                    </p>
+                  </div>
                 </motion.div>
 
                 <motion.div
-                  className="mt-4 px-6 py-4 rounded-lg bg-gradient-to-r from-purple-600/20 to-cyan-600/20 border border-purple-500/20 max-w-[800px] mx-auto relative overflow-hidden"
+                  className="mt-4 px-6 py-3 rounded-lg bg-gradient-to-r from-amber-600/20 to-yellow-600/20 border border-amber-500/20 max-w-[800px] mx-auto relative overflow-hidden text-center"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.75 }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 animate-pulse"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-amber-500/10 to-yellow-500/10 animate-pulse"></div>
                   <div className="relative">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-cyan-400 font-bold text-lg">🏆 High-Value Prize</span>
-                      <span className="px-2 py-0.5 text-xs font-medium bg-cyan-500/20 text-cyan-300 rounded-full">Exclusive Opportunity</span>
-                    </div>
-                    <p className="text-gray-200 text-sm leading-relaxed">
-                      Selected winners will receive professional mentorship to help bring their innovative ideas to life as successful startups. This is your chance to turn your vision into reality!
-                    </p>
+                    <span className="text-amber-400 font-bold text-lg">🏆 Exciting Prizes to be Won!</span>
                   </div>
                 </motion.div>
 
@@ -300,7 +292,7 @@ export default function HackathonLanding() {
 
         <motion.section
           id="about"
-          className="w-full py-12 md:py-16 relative overflow-hidden"
+          className="w-full py-12 md:py-16 lg:py-20 relative overflow-hidden"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -308,7 +300,7 @@ export default function HackathonLanding() {
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-950 to-black pointer-events-none" />
 
-          <div className="container px-4 md:px-6 relative z-10">
+          <div className="container px-4 md:px-6 lg:px-8 relative z-10">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <motion.div
                 className="space-y-4"
@@ -329,7 +321,7 @@ export default function HackathonLanding() {
               </motion.div>
             </div>
 
-            <div className="mx-auto grid max-w-5xl items-center gap-8 py-8 lg:grid-cols-3">
+            <div className="mx-auto grid max-w-5xl items-center gap-6 md:gap-8 py-8 lg:grid-cols-3 px-4 md:px-6">
               <motion.div
                 className="feature-card"
                 initial={{ opacity: 0, y: 40 }}
@@ -401,7 +393,7 @@ export default function HackathonLanding() {
 
         <motion.section
           id="register"
-          className="w-full py-12 md:py-16 relative overflow-hidden"
+          className="w-full py-12 md:py-16 lg:py-20 relative overflow-hidden"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -409,7 +401,7 @@ export default function HackathonLanding() {
         >
           <div className="absolute inset-0 bg-gradient-to-b from-gray-950 to-black pointer-events-none" />
 
-          <div className="container px-4 md:px-6 relative z-10">
+          <div className="container px-4 md:px-6 lg:px-8 relative z-10">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <motion.div
                 className="space-y-4"
@@ -489,12 +481,6 @@ export default function HackathonLanding() {
       >
         <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
           <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} HackFest. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <Link href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
-              <Github className="h-5 w-5" />
-              <span className="sr-only">GitHub</span>
-            </Link>
-          </div>
         </div>
       </motion.footer>
     </div>

@@ -83,9 +83,9 @@ export default function ContactPage() {
       </header>
 
       <main className="flex-1 perspective">
-        <section className="w-full py-20 md:py-32 relative overflow-hidden">
+        <section className="w-full py-6 md:py-12 lg:py-16 relative overflow-hidden">
           <motion.div
-            className="container px-4 md:px-6 relative z-10"
+            className="container px-4 md:px-6 lg:px-8 relative z-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -196,12 +196,6 @@ export default function ContactPage() {
       >
         <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
           <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} HackFest. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <Link href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
-              <Github className="h-5 w-5" />
-              <span className="sr-only">GitHub</span>
-            </Link>
-          </div>
         </div>
       </motion.footer>
     </div>
