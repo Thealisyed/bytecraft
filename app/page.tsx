@@ -49,9 +49,9 @@ export default function HackathonLanding() {
   const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   return (
-    <div className="flex min-h-screen flex-col bg-black overflow-hidden">
+    <div className="flex min-h-screen w-full flex-col bg-black overflow-hidden">
       {/* Background gradient orbs - optimize for mobile */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none">
         <div
           className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-purple-900/20 blur-[100px]"
           style={{
@@ -69,13 +69,13 @@ export default function HackathonLanding() {
       </div>
 
       {/* Optimize particle effect for mobile */}
-      <div className="fixed inset-0 bg-grid-white/[0.02] pointer-events-none" style={{ 
+      <div className="fixed inset-0 w-full h-full bg-grid-white/[0.02] pointer-events-none" style={{ 
         backgroundSize: typeof window !== "undefined" && window.innerWidth < 768 ? '32px 32px' : '64px 64px' 
       }} />
 
       <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-black/80 backdrop-blur-lg supports-[backdrop-filter]:bg-black/20">
         <motion.div
-          className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0"
+          className="w-full max-w-[100vw] mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
@@ -93,45 +93,43 @@ export default function HackathonLanding() {
               HackFest
             </span>
           </div>
-          <div className="flex flex-1 items-center justify-end space-x-4">
-            <nav className="flex items-center space-x-6">
-              <Link
-                href="#about"
-                className="text-sm font-medium text-gray-300 transition-all hover:text-white relative group"
-              >
-                About
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-              <Link
-                href="#register"
-                className="text-sm font-medium text-gray-300 transition-all hover:text-white relative group"
-              >
-                Register
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-              <Link
-                href="/contact"
-                className="text-sm font-medium text-gray-300 transition-all hover:text-white relative group"
-              >
-                Contact
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-            </nav>
-          </div>
+          <nav className="flex items-center space-x-6">
+            <Link
+              href="#about"
+              className="text-sm font-medium text-gray-300 transition-all hover:text-white relative group"
+            >
+              About
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+            <Link
+              href="#register"
+              className="text-sm font-medium text-gray-300 transition-all hover:text-white relative group"
+            >
+              Register
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+            <Link
+              href="/contact"
+              className="text-sm font-medium text-gray-300 transition-all hover:text-white relative group"
+            >
+              Contact
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+          </nav>
         </motion.div>
       </header>
 
-      <main className="flex-1 perspective">
-        <section className="w-full py-6 md:py-12 lg:py-16 relative overflow-hidden">
+      <main className="flex-1 perspective w-full">
+        <section className="w-full min-h-[calc(100vh-4rem)] py-8 md:py-12 lg:py-16 relative overflow-hidden">
           <motion.div
-            className="container px-4 md:px-6 lg:px-8 relative z-10"
+            className="w-full max-w-[100vw] mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="flex flex-col items-center justify-center text-center">
+            <div className="flex flex-col items-center justify-center text-center w-full max-w-7xl mx-auto">
               <motion.div
-                className="space-y-3 max-w-4xl mx-auto"
+                className="space-y-4 w-full"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -157,7 +155,7 @@ export default function HackathonLanding() {
                 </motion.h1>
 
                 <motion.p
-                  className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-[800px] mx-auto leading-relaxed px-4"
+                  className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.5 }}
@@ -166,7 +164,7 @@ export default function HackathonLanding() {
                   <span className="hidden sm:inline">Transform your ideas into a successful startup with professional mentorship!</span>
                 </motion.p>
 
-                {/* Register button moved up here */}
+                {/* Register button */}
                 <motion.div
                   className="pt-4"
                   initial={{ opacity: 0, y: 20 }}
@@ -177,14 +175,14 @@ export default function HackathonLanding() {
                 >
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="inline-flex items-center justify-center bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white border-0 text-lg py-6 px-10 rounded-xl shadow-lg shadow-purple-500/20 transition-all hover:shadow-purple-500/40 hover:scale-105 font-medium"
+                    className="inline-flex items-center justify-center bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white border-0 text-lg py-4 sm:py-6 px-8 sm:px-10 rounded-xl shadow-lg shadow-purple-500/20 transition-all hover:shadow-purple-500/40 hover:scale-105 font-medium"
                   >
                     Register Your Interest <ArrowRight className="ml-2 h-5 w-5" />
                   </button>
                 </motion.div>
 
                 <motion.div
-                  className="mt-4 px-6 py-4 rounded-lg bg-gradient-to-r from-purple-600/20 to-cyan-600/20 border border-purple-500/20 max-w-[800px] mx-auto relative overflow-hidden"
+                  className="mt-4 px-4 sm:px-6 py-4 rounded-lg bg-gradient-to-r from-purple-600/20 to-cyan-600/20 border border-purple-500/20 max-w-3xl mx-auto relative overflow-hidden"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.7 }}
@@ -202,7 +200,7 @@ export default function HackathonLanding() {
                 </motion.div>
 
                 <motion.div
-                  className="mt-4 px-6 py-3 rounded-lg bg-gradient-to-r from-amber-600/20 to-yellow-600/20 border border-amber-500/20 max-w-[800px] mx-auto relative overflow-hidden text-center"
+                  className="mt-4 px-4 sm:px-6 py-3 rounded-lg bg-gradient-to-r from-amber-600/20 to-yellow-600/20 border border-amber-500/20 max-w-3xl mx-auto relative overflow-hidden text-center"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.75 }}
@@ -479,7 +477,7 @@ export default function HackathonLanding() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+        <div className="w-full max-w-[100vw] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
           <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} HackFest. All rights reserved.</p>
         </div>
       </motion.footer>
